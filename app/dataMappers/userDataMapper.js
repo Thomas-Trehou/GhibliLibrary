@@ -4,7 +4,7 @@ const dataMapper = {
 
   async findUser(emailParam) {
     const query = {
-      text: 'SELECT * FROM "user" LEFT JOIN film ON "user".favorite = film.id WHERE email=$1;',
+      text: 'SELECT "user".id, "user".firstname, "user".email, "user".password,  film.id AS film_id, film.title, film.original_title, film.description, film.director, film.banner_src, film.release_date, film.duration FROM "user" INNER JOIN film ON "user".favorite = film.id WHERE email=$1',
       values: [emailParam],
     };
     const result = await client.query(query);
