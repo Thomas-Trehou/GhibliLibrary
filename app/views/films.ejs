@@ -1,0 +1,11 @@
+<%- include('./partials/movieListHeaders') %>
+
+    <main>
+        
+        <% films.forEach(film => { %>
+            <div class="card" style="background-image: url(<%=film.image_src%>);"><a href="/app/films/film/<%=film.id%>" class="card_link"><%= film.title %></a></div>
+        <% }) %>
+        
+    </main>
+
+<%- include('./partials/footers') %>
