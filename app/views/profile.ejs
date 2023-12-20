@@ -1,0 +1,20 @@
+<%- include('./partials/headers') %>
+
+    <main class="filmMain">
+       
+        <h2 class="filmTitle"> <%= locals.user.pseudo %> </h2>
+
+        <% if (locals.user.bookmark) { %>
+            <p style=" text-align: center;">Your favorite Ghibli's movie : </p>
+
+            <div class= "filmForm" style="background-image: url(<%=locals.user.bookmark.banner%>);">
+            </div>
+            <h1 class="filmTitle"><%=locals.user.bookmark.title%></h1> 
+            <p>Director : <%=locals.user.bookmark.director%><br>
+            Release date : <%=locals.user.bookmark.releaseDate%><br>
+            Duration : <%=locals.user.bookmark.duration%> mins<br>
+            <%=locals.user.bookmark.description%></p>
+        <% } %>
+    </main>
+
+<%- include('./partials/footers') %>

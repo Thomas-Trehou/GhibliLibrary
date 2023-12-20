@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghibli-library</title>
+    <link rel="preconnect" href="https://actualitte.com/media/cache/width_944_webp/uploads/images/un-nouveau-projet-d-hayao-miyazaki-inspire-d-un-classique-de-la-litterature-japonaise-6950fb53c799.jpg">
+    <link rel="preconnect" href="https://images5.alphacoders.com/992/992304.jpg">
+    <link rel="preconnect" href="https://image.tmdb.org/">
+    <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="stylesheet" href="/CSS/movielistcards.css">
+</head>
+<body>
+    <header>
+        <h1>Ghibli-library</h1>
+        <nav>
+            <ul>
+                <li><a href="/app">Home Page</a></li>
+                <li><a href="/app/films">Movie list</a></li>
+                <% locals.dates.forEach(period => { %>
+                <li><a href="/app/films/<%=period.firstDate%>"><%=period.firstDate%>-<%=period.secondDate%></a></li>
+                <% }) %>
+                <% if (!locals.user) { %>
+                <li><a href="/app/users/register">Register</a></li>
+                <li><a href="/app/users/login">Login</a></li>
+                <% } else { %>
+                <li><a href="/app/users/profile"><%=locals.user.pseudo%></a></li>
+                <li><a href="/app/users/logout">Logout</a></li>
+                <% }  %>
+            </ul>
+          </nav>
+    </header>
