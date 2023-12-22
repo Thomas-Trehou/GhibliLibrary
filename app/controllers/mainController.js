@@ -29,14 +29,14 @@ const mainController = {
 
   async renderFilmsByReleaseDatePage(req, res) {
     try {
-      const filmReleaseYear = Number(req.params.filmDate);
+      const filmReleaseDecade = Number(req.params.filmDate);
 
-      if (isNaN(filmReleaseYear) === true) {
-        return res.status(404).render('404', { error: `${filmReleaseYear} is not allowed.` });
+      if (isNaN(filmReleaseDecade) === true) {
+        return res.status(404).render('404', { error: `${filmReleaseDecade} is not allowed.` });
       }
 
-      const sartReleaseYear = (filmReleaseYear - 1);
-      const endReleaseYear = (filmReleaseYear + 10);
+      const sartReleaseYear = filmReleaseDecade;
+      const endReleaseYear = (filmReleaseDecade + 10);
 
       const foundFilms = await dataMapper.getFilmsByDate(sartReleaseYear, endReleaseYear);
 

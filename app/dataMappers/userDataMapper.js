@@ -30,7 +30,7 @@ const dataMapper = {
 
   async setBookmark(bookmark, user) {
     const query = {
-      text: 'UPDATE "user" SET  favorite_film_id = $1  WHERE email = $2 ',
+      text: 'UPDATE "user" SET favorite_film_id = $1  WHERE email = $2 ',
       values: [bookmark, user],
     };
     const result = await client.query(query);
