@@ -7,17 +7,22 @@ const validate = require('../../validation');
 
 const router = new express.Router();
 
-router.get('/register', userController.registerPage);
-router.post('/register', validate([
-  { schema: createUserSchema, source: 'body' },
-]), userController.register);
+router.route('/register')
+  .get(userController.registerPage)
+  .post(validate([
+    { schema: createUserSchema, source: 'body' },
+  ]), userController.register);
 
-router.get('/login', sessionController.loginPage);
-router.post('/login', validate([
-  { schema: loginSchema, source: 'body' },
-]), sessionController.login);
-router.get('/logout', sessionController.logout);
+router.route('/login')
+  .get(sessionController.loginPage)
+  .post(validate([
+    { schema: loginSchema, source: 'body' },
+  ]), sessionController.login);
 
-router.get('/profile', sessionController.profilePage);
+router.route('/logout')
+  .get(sessionController.logout);
+
+router.route('/profile')
+  .get(sessionController.profilePage);
 
 module.exports = router;

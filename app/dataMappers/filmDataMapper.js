@@ -10,13 +10,10 @@ const dataMapper = {
     return result.rows;
   },
 
-  async getFilmsByDate(date) {
-    const startDate = (date - 1);
-    const endDate = (date + 10);
-
+  async getFilmsByDate(sartReleaseYear, endReleaseYear) {
     const query = {
       text: 'SELECT * FROM film WHERE release_date >= $1 AND release_date <= $2',
-      values: [startDate, endDate],
+      values: [sartReleaseYear, endReleaseYear],
     };
     const result = await client.query(query);
     return result.rows;

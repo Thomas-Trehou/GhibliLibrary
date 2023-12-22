@@ -7,7 +7,8 @@ const router = new express.Router();
 
 router.use('/app', appRouter);
 
-router.get('/', mainController.redirectHomePage);
+router.route('/')
+  .get(mainController.redirectHomePage);
 
 router.use(middlewares.middleware404);
 

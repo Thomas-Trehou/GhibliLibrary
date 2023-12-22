@@ -14,21 +14,21 @@ app.set('views', './app/views');
 
 app.use(express.static('public'));
 
-const port = 8080;
-
-app.use(middlewares.middlewarelocals);
-
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
-  secret: 'une chaine de charactères aléatoire',
+  secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
   cookie: { secure: false },
 }));
 
+app.use(middlewares.middlewarelocals);
+
 app.use(middlewares.middlewareLocalUser);
 
 app.use(router);
+
+const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console

@@ -3,11 +3,14 @@ const mainController = require('../../controllers/mainController');
 
 const router = new express.Router();
 
-router.get('/', mainController.renderFilmsListPage);
+router.route('/')
+  .get(mainController.renderFilmsListPage);
 
-router.get('/:filmDate', mainController.renderFilmsByReleaseDatePage);
+router.route('/:filmDate')
+  .get(mainController.renderFilmsByReleaseDatePage);
 
-router.get('/film/:filmID', mainController.renderOneFilmPage);
-router.post('/film/:filmID', mainController.addBookmark);
+router.route('/film/:filmID')
+  .get(mainController.renderOneFilmPage)
+  .post(mainController.bookmarkFavoriteFilm);
 
 module.exports = router;

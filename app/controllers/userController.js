@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const bcrypt = require('bcrypt');
 const dataMapper = require('../dataMappers/userDataMapper');
 
@@ -10,7 +11,7 @@ const usersController = {
   // eslint-disable-next-line consistent-return
   async register(req, res) {
     try {
-      const userEntry = await dataMapper.findUser(req.body.email);
+      const userEntry = await dataMapper.getUser(req.body.email);
 
       if (userEntry) {
         return res.render('register', {
@@ -18,7 +19,7 @@ const usersController = {
         });
       }
 
-      const salt = await bcrypt.genSalt(10);
+      const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS, 10));
       const encryptedPassword = await bcrypt.hash(req.body.password, salt);
 
       const newUser = {
@@ -32,6 +33,7 @@ const usersController = {
 
       res.render('login', { message: 'You can log in !' });
     } catch (err) {
+      console.error(err);
       res.render('register', { error: err.message });
     }
   },

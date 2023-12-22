@@ -19,11 +19,11 @@ CREATE TABLE "film" (
 
 CREATE TABLE "user" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "firstname" TEXT NOT NULL,
-  "lastname" TEXT NOT NULL,
-  "email" TEXT NOT NULL,
-  "password" TEXT NOT NULL,
-  "favorite" INT REFERENCES "film"("id"),
+  "firstname" VARCHAR(32) NOT NULL,
+  "lastname" VARCHAR(32) NOT NULL,
+  "email" VARCHAR(64) NOT NULL,
+  "password" VARCHAR(64) NOT NULL,
+  "favorite_film_id" INT REFERENCES "film"("id") DEFAULT 1,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
   "updated_at" TIMESTAMPTZ
 );
