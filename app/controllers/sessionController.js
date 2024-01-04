@@ -15,7 +15,7 @@ const loginController = {
       const { email, password } = req.body;
 
       const user = await dataMapper.getUserWithFavorite(email);
-      console.log(user);
+
       if (!user) {
         return res.render('login', {
           error: 'This user does not exist',

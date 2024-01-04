@@ -28,10 +28,10 @@ const dataMapper = {
     return result.rows;
   },
 
-  async setBookmark(bookmark, user) {
+  async setBookmark(favoriteFilmId, user) {
     const query = {
       text: 'UPDATE "user" SET favorite_film_id = $1  WHERE email = $2 ',
-      values: [bookmark, user],
+      values: [favoriteFilmId, user],
     };
     const result = await client.query(query);
     return result.rows;

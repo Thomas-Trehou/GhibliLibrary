@@ -70,16 +70,16 @@ const mainController = {
 
   async bookmarkFavoriteFilm(req, res) {
     try {
-      const bookmark = Number(req.body.bookmark);
+      const favoriteFilmId = Number(req.body.bookmark);
 
       const userEmail = req.session.user.email;
 
-      const foundFilm = await dataMapper.getFilmById(bookmark);
+      const foundFilm = await dataMapper.getFilmById(favoriteFilmId);
       if (!foundFilm) {
         return res.status(404).render('404', { error: 'The film you choose is not in our database. Please verify your choice.' });
       }
 
-      await userDataMapper.setBookmark(bookmark, userEmail);
+      await userDataMapper.setBookmark(favoriteFilmId, userEmail);
 
       const user = await userDataMapper.getUserWithFavorite(userEmail);
       const formattedUser = formatUser(user);
