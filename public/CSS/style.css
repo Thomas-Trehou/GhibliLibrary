@@ -37,7 +37,6 @@
   
   header nav ul {
     background: rgba(255, 255, 255, 0.486);
-    color: gb(243, 205, 18);
     display: flex;
     justify-content: center;
     list-style-type: none;
